@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.viniciusbozzi.project">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.requestLegacyExternalStorage=&quot;true&quot;" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/logo_size_invert"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo_size_invert"
+        android:screenOrientation="portrait"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activity.TorrasListGlobal"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ListaIpActivity"
+            android:exported="false" /> <!-- <activity android:name=".activity.PrimeirosPassos"></activity> -->
+        <activity android:name=".activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.AutenticacaoActivity" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.ListaDispositivos" />
+        <activity android:name=".activity.QrCodeActivity" />
+        <activity
+            android:name=".activity.TorraRealTime"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:hardwareAccelerated="true" />
+        <activity
+            android:name=".activity.TorraSelecionadaActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.AdicionarGrafico"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.EditarTorraActivity"
+            android:parentActivityName=".activity.TorraSelecionadaActivity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#856A5E</color>
+    <color name="colorPrimaryDark">#1D1305</color>
+    <color name="colorAccent">#CCB19F</color>
+    <color name="fundoGrafico">#43F8CA28</color>
+    <color name="corCapuccino">#FFFFFF</color>
+    <color name="vermelhoEscuro">#a50a15</color>
+    <color name="torraRealTime">#FA4343</color>
+    <color name="torraRealTimeFundo">#41FA4343</color>
+    <color name="torraRealTimeFinalizado">#4380FA</color>
+    <color name="torraRealTimeFinalizadoFundo">#414380FA</color>
+    <color name="transparente">#00FFFFFF</color>
+</resources>

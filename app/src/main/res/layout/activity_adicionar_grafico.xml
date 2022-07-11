@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#9D816E"
+    android:theme="@style/AppTheme.NoActionBar"
+    tools:context=".activity.AdicionarGrafico">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/scatterPlot"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomeGrafico" />
+
+    <com.github.nikartm.button.FitButton
+        android:id="@+id/btnAddPt"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="16dp"
+        android:gravity="center_horizontal|center_vertical"
+        app:fb_backgroundColor="#9D816E"
+        app:fb_borderColor="@color/colorAccent"
+        app:fb_borderWidth="15dp"
+        app:fb_shape="circle"
+        app:fb_text="Adicionar"
+        app:fb_textAllCaps="false"
+        app:fb_textColor="#FFFF"
+        app:fb_textPaddingEnd="16dp"
+        app:fb_textPaddingStart="16dp"
+        app:fb_textSize="15dp"
+        app:fb_textVisibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numX" />
+
+    <EditText
+        android:id="@+id/numX"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/scatterPlot"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_edit_text"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Tempo"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        android:textColor="#FFFF"
+        android:textColorHint="#FFFF"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scatterPlot" />
+
+    <EditText
+        android:id="@+id/numY"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/numX"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_edit_text"
+        android:ems="10"
+        android:gravity="center|center_horizontal"
+        android:hint="Temperatura"
+        android:inputType="numberSigned|numberDecimal"
+        android:textAlignment="center"
+        android:textColor="#FFFF"
+        android:textColorHint="#FFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/scatterPlot" />
+
+    <EditText
+        android:id="@+id/nomeGrafico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numY"
+        android:gravity="center"
+        android:hint="Dê um nome à sua Torra"
+        android:shadowColor="#060706"
+        android:textAllCaps="false"
+        android:textColor="#FFFF"
+        android:textColorHighlight="@color/colorPrimaryDark"
+        android:textColorHint="@color/colorAccent"
+        android:textColorLink="@color/colorPrimary"
+        android:textCursorDrawable="@color/colorPrimaryDark"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5
+" />
+
+    <Switch
+        android:id="@+id/switchAcessoGlobal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:checked="false"
+        android:text="Privado"
+        android:textColor="@color/corCapuccino"
+        android:textOff="No"
+        android:textOn="Yes"
+        app:layout_constraintBottom_toTopOf="@+id/scatterPlot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/include"
+        tools:checked="false" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

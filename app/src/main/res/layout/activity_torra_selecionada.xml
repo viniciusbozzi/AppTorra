@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#9D816E"
+    android:theme="@style/AppTheme.NoActionBar"
+    tools:context=".activity.TorraSelecionadaActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graficoSelecionado"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <com.github.nikartm.button.FitButton
+        android:id="@+id/buttonExport"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        app:fb_backgroundColor="@color/colorAccent"
+        app:fb_cornerRadius="8dp"
+        app:fb_icon="@drawable/ic_share_24dp"
+        app:fb_iconColor="#FFFF"
+        app:fb_iconHeight="40dp"
+        app:fb_iconWidth="40dp"
+        app:fb_shape="square"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonEdit"
+        app:layout_constraintTop_toBottomOf="@+id/graficoSelecionado" />
+
+    <com.github.nikartm.button.FitButton
+        android:id="@+id/buttonFirebase"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        app:fb_backgroundColor="@color/colorAccent"
+        app:fb_cornerRadius="8dp"
+        app:fb_icon="@drawable/googleg_disabled_color_18"
+        app:fb_iconColor="#FFFF"
+        app:fb_iconHeight="40dp"
+        app:fb_iconWidth="40dp"
+        app:fb_shape="square"
+        app:layout_constraintEnd_toStartOf="@+id/buttonEdit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graficoSelecionado" />
+
+    <com.github.nikartm.button.FitButton
+        android:id="@+id/buttonEdit"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        app:fb_backgroundColor="@color/colorAccent"
+        app:fb_cornerRadius="8dp"
+        app:fb_icon="@drawable/ic_mode_edit_24dp"
+        app:fb_iconColor="#FFFF"
+        app:fb_iconHeight="40dp"
+        app:fb_iconWidth="40dp"
+        app:fb_shape="square"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graficoSelecionado" />
+
+    <com.github.nikartm.button.FitButton
+        android:id="@+id/buttonTorrar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:visibility="gone"
+        app:fb_backgroundColor="@color/colorAccent"
+        app:fb_cornerRadius="24dp"
+        app:fb_rippleColor="#FFFF"
+        app:fb_shape="rectangle"
+        app:fb_text="INICIAR TORRA"
+        app:fb_textColor="#FFFF"
+        app:fb_textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonEdit" />
+
+    <com.github.nikartm.button.FitButton
+        android:id="@+id/buttonPreAquecer"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:visibility="gone"
+        app:fb_backgroundColor="@color/colorAccent"
+        app:fb_cornerRadius="24dp"
+        app:fb_rippleColor="#FFFF"
+        app:fb_shape="rectangle"
+        app:fb_text="PRÉ AQUECER"
+        app:fb_textColor="#FFFF"
+        app:fb_textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonEdit" />
+
+    <TextView
+        android:id="@+id/tempTorraSelecionada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="0ºC"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/include"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/include" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

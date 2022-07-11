@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/bungee_inline</item>
+        <item>@font/cagliostro</item>
+        <item>@font/fredoka_one</item>
+        <item>@font/joti_one</item>
+        <item>@font/lily_script_one</item>
+        <item>@font/peralta</item>
+    </array>
+</resources>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#9D816E"
+    android:theme="@style/AppTheme"
+    tools:context=".activity.TorraRealTime">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graficoSelectRealTime"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.181" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graficoSelectRealTime2"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/graficoSelectRealTime" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/section_label"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        android:layout_marginBottom="24dp"-->
+<!--        android:text="Tempo"-->
+<!--        android:textColor="@color/corCapuccino"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+    <TextView
+        android:id="@+id/tempo_Real"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="00:00"
+        android:textColor="@color/corCapuccino"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/graficoSelectRealTime" />
+
+    <TextView
+        android:id="@+id/temp_Real"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="00 C"
+        android:textColor="@color/corCapuccino"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graficoSelectRealTime" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <com.github.nikartm.button.FitButton
+        android:id="@+id/buttonExportFinalTorra"
+        android:layout_width="56dp"
+        android:layout_height="49dp"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="4dp"
+        android:gravity="center"
+        app:fb_backgroundColor="@color/colorAccent"
+        app:fb_cornerRadius="8dp"
+        app:fb_icon="@drawable/ic_share_24dp"
+        app:fb_iconColor="#FFFF"
+        app:fb_iconHeight="40dp"
+        app:fb_iconWidth="40dp"
+        app:fb_shape="square"
+        app:layout_constraintBottom_toBottomOf="@+id/include"
+        app:layout_constraintEnd_toEndOf="@+id/include"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="25dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tempo_Real"
+        app:layout_constraintEnd_toStartOf="@+id/tempo_Real"
+        app:layout_constraintTop_toBottomOf="@+id/graficoSelectRealTime"
+        app:srcCompat="@drawable/tempo_icon" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="13dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/temp_Real"
+        app:layout_constraintEnd_toStartOf="@+id/temp_Real"
+        app:layout_constraintTop_toBottomOf="@+id/graficoSelectRealTime"
+        app:srcCompat="@drawable/temperatura_icon" />
+
+    <com.github.nikartm.button.FitButton
+        android:id="@+id/fimTorra"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Finalizar"
+        app:fb_cornerRadius="24dp"
+        app:fb_rippleColor="#FFFF"
+        app:fb_shape="rectangle"
+        app:fb_text="FINALIZAR"
+        app:fb_textColor="#FFFF"
+        app:fb_textSize="18dp"
+        app:fb_backgroundColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graficoSelectRealTime" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
