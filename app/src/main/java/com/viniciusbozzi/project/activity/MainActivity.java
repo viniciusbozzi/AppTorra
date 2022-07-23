@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                     //textResult2.setText("Nenhum dispositivo cadastrado!");
                 }else {
                     aux2 = dataSnapshot.getValue(String.class).toUpperCase();
-                    //System.out.println("\n\n1\n\n" + aux2);
                 }
             }
             @Override
@@ -100,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                                             Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(MainActivity.this, ListaIpActivity.class);
                                     startActivity( intent );
-                                }else{
+                                } else{
                                     Grafico graficoSelecionado = graficoList.get(position);
                                     Intent intent = new Intent(MainActivity.this, TorraSelecionadaActivity.class);
                                     intent.putExtra("graficoSelecionado",graficoSelecionado);

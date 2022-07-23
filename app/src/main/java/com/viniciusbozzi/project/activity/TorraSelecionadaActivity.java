@@ -91,6 +91,7 @@ public class TorraSelecionadaActivity extends AppCompatActivity {
     static Handler mHandler = new Handler();
     int count = 0;
     boolean dadosmandados = false;
+    boolean pre_aquecer_ajuste = false;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
@@ -112,8 +113,6 @@ public class TorraSelecionadaActivity extends AppCompatActivity {
         macDispositivo = (String) getIntent().getSerializableExtra("macDispositivo");
         globalEdit = (String) getIntent().getSerializableExtra("globaledit");
 
-        Log.d("345", "aqui: " + globalEdit);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         graphView = findViewById(R.id.graficoSelecionado);
         fitButton = findViewById(R.id.buttonExport);
@@ -125,16 +124,43 @@ public class TorraSelecionadaActivity extends AppCompatActivity {
         buttonFirebase = findViewById(R.id.buttonFirebase);
 
         if(globalEdit != null) {
-            Log.d("567", "entrei:" + globalEdit);
+            //Log.d("567", "entrei:" + globalEdit);
             buttonEdit.setVisibility(View.INVISIBLE);
         }
-
-        Log.d("123", "onCreate: " + macDispositivo);
 
         myRef = database.getReference("dispositivos/" + macDispositivo + "/dados");
         myRef2 = database.getReference("dispositivos/" + macDispositivo + "/aquecendo");
         myRef3 = database.getReference("dispositivos/" + macDispositivo + "/temperatura");
         myRef4 = database.getReference("dispositivos/" + macDispositivo + "/torrando");
+
+        if(macDispositivo != null){
+            DatabaseReference myRefEmailTorradeira = database.getReference(
+                    "dispositivos/" + macDispositivo + "/resfriando");
+
+            myRefEmailTorradeira.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.getValue(Boolean.class) == null){
+                        //textResult2.setText("Nenhum dispositivo cadastrado!");
+                    }else {
+                        Boolean resfriando = dataSnapshot.getValue(Boolean.class);
+                        if(resfriando){
+                            Toast.makeText(getApplicationContext(),
+                                    "Torradeira resfriando!\n Por favor, aguarde",
+                                    Toast.LENGTH_SHORT).show();
+                            buttonFirebase.setVisibility(View.GONE);
+                        }else{
+                            buttonFirebase.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    //textResult2.setText("Nenhum dispositivo cadastrado!");
+                }
+            });
+        }
 
         if (grafico != null) {
             toolbar.setTitle(grafico.getNomeGrafico().toUpperCase());
@@ -258,14 +284,6 @@ public class TorraSelecionadaActivity extends AppCompatActivity {
                     Intent intent = new Intent(TorraSelecionadaActivity.this, EditarTorraActivity.class);
                     intent.putExtra("graficoEditado", grafico);
                     intent.putExtra("macDispositivo", macDispositivo);
-//                    if (conexao) {
-//                        try {
-//                            bluetoothSocket.close();
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                        conexao = false;
-//                    }
                     startActivity(intent);
                     finish();
                 }
@@ -278,7 +296,6 @@ public class TorraSelecionadaActivity extends AppCompatActivity {
     protected void onStop() {
         myRef2.setValue(false);
         buttonIniciarTorra.setVisibility(View.GONE);
-        //buttonPreAquecer.setVisibility(View.GONE);
         tempTorraSelecionada.setVisibility(View.GONE);
         myRef3.removeEventListener(listener3);
         super.onStop();
@@ -298,7 +315,10 @@ public class TorraSelecionadaActivity extends AppCompatActivity {
 //                Log.d("TAG", "Value is: " + value);
                 tempTorraSelecionada.setText(temper+"ºC");
                 //tempPreAque.setText(temper+"ºC");
-                if(temper >= xyValueArray.get(0).getY() && dadosmandados){
+                if(temper >= (xyValueArray.get(0).getY() - 2)
+                        && temper <= (xyValueArray.get(0).getY() + 2)
+                        && dadosmandados){
+                    pre_aquecer_ajuste = true;
                     dialog.cancel();
                     buttonPreAquecer.setVisibility(View.GONE);
                     buttonFirebase.setVisibility(View.GONE);
@@ -306,7 +326,14 @@ public class TorraSelecionadaActivity extends AppCompatActivity {
                     fitButton.setVisibility(View.GONE);
                     buttonIniciarTorra.setVisibility(View.VISIBLE);
                     Toast.makeText(TorraSelecionadaActivity.this,
-                            "O torrador já está pré-aquecido!", Toast.LENGTH_SHORT).show();
+                            "O torrador já está pré-aquecido!\nAdicione o café"
+                            , Toast.LENGTH_SHORT).show();
+                }else if((temper <= (xyValueArray.get(0).getY() - 2)
+                        || temper >= (xyValueArray.get(0).getY() + 2))
+                        && dadosmandados
+                        && pre_aquecer_ajuste){
+                    buttonIniciarTorra.setVisibility(View.GONE);
+                    buttonPreAquecer.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -323,14 +350,14 @@ public class TorraSelecionadaActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Voce deseja abandonar a Torra?")
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         myRef2.setValue(false);
                         dialog.cancel();
                         TorraSelecionadaActivity.this.onSuperBackPressed();
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Não", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }

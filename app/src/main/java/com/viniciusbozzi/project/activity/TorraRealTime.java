@@ -80,7 +80,6 @@ public class TorraRealTime extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         graphView = findViewById(R.id.graficoSelectRealTime);
         graphViewRealTime = findViewById(R.id.graficoSelectRealTime2);
-//        section_label = findViewById(R.id.section_label);
         tempoReal = findViewById(R.id.tempo_Real);
         temperaturaReal = findViewById(R.id.temp_Real);
         fitButtonExport = findViewById(R.id.buttonExportFinalTorra);
@@ -127,6 +126,12 @@ public class TorraRealTime extends AppCompatActivity {
                 try {
                     Intent intent = new Intent(TorraRealTime.this, MainActivity.class);
                     startActivity(intent);
+                    isRunning = false;
+                    xySeriesRealTime = null;
+                    graph2LastXValue = 0;
+                    temporeal = 0;
+                    graphViewRealTime.removeAllSeries();
+                    myRef4.setValue(false);
                     finish();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -181,7 +186,7 @@ public class TorraRealTime extends AppCompatActivity {
 
     private  void plotaGraficoTempoReal() {
 
-        Log.d("321", temporeal + "\n" + valueTempeRealFirebase);
+        Log.d("321", "\n" + temporeal + "\n" + valueTempeRealFirebase);
         if(temporeal >= ultimoX){
             Toast.makeText(TorraRealTime.this, "Fim da Torra!", Toast.LENGTH_LONG).show();
             fitButtonExport.setVisibility(View.VISIBLE);
@@ -191,7 +196,7 @@ public class TorraRealTime extends AppCompatActivity {
         }else{
             xyValueArrayRealTime.add(new XYValue(temporeal,valueTempeRealFirebase));
             xySeriesRealTime.appendData(new DataPoint(graph2LastXValue, valueTempeRealFirebase), true, 10000);
-            graph2LastXValue += 0.01666666667;
+            graph2LastXValue = 0.01666666667*(temporeal+1);
             graphViewRealTime.getViewport().setMaxX(20);
             graphViewRealTime.getViewport().setMinX(0);
             graphViewRealTime.removeSeries(xySeriesRealTime);
@@ -225,7 +230,8 @@ public class TorraRealTime extends AppCompatActivity {
                         temporeal = 0;
                         graphViewRealTime.removeAllSeries();
                         myRef4.setValue(false);
-                        TorraRealTime.this.onSuperBackPressed();
+                        //TorraRealTime.this.onSuperBackPressed();
+                        finish();
                     }
                 })
                 .setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -237,9 +243,9 @@ public class TorraRealTime extends AppCompatActivity {
         alert.show();
     }
 
-    public void onSuperBackPressed(){
-        super.onBackPressed();
-    }
+//    public void onSuperBackPressed(){
+//        super.onBackPressed();
+//    }
 
     private void iniciarGrafico() {
 
@@ -338,8 +344,8 @@ public class TorraRealTime extends AppCompatActivity {
                 plotaGraficoTempoReal();
                 if(temporeal < ultimoX){
                     tempoReal.setText(String.format("%02d:%02d", seconds / SECS_IN_MIN, seconds % SECS_IN_MIN));
+                    temporeal = seconds;
                     handlerTempo.postDelayed(runnable, MILLIS_IN_SEC);
-                    temporeal++;
                 }
             }
         }

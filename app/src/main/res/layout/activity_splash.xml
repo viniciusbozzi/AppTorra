@@ -59,18 +59,6 @@
     <!--        app:layout_constraintVertical_bias="0.192"-->
     <!--        app:srcCompat="@drawable/logo_torra" />-->
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/criador"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginBottom="24dp"-->
-    <!--        android:text="By Matheus Bozzi"-->
-    <!--        android:textColor="#FFFFFF"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:fontFamily="casual"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
     <!--    <TextView-->
     <!--        android:id="@+id/textView"-->

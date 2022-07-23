@@ -26,8 +26,9 @@
             android:exported="false" />
         <activity
             android:name=".activity.ListaIpActivity"
-            android:exported="false" /> <!-- <activity android:name=".activity.PrimeirosPassos"></activity> -->
-        <activity android:name=".activity.SplashActivity">
+            android:exported="false" />
+        <activity android:name=".activity.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,7 +55,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
+            android:authorities="com.viniciusbozzi.project.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
